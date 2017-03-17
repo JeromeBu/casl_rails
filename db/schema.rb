@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317131809) do
+ActiveRecord::Schema.define(version: 20170317135913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "title"
+    t.text     "subtitle"
+    t.integer  "max_participants"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_articles_on_activity_id", using: :btree
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "sex"
+    t.date     "birth_date"
+    t.string   "school"
+    t.string   "class"
+    t.text     "extra_info"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_children_on_user_id", using: :btree
+  end
+
+  create_table "inscriptions", force: :cascade do |t|
+    t.integer  "child_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_inscriptions_on_activity_id", using: :btree
+    t.index ["child_id"], name: "index_inscriptions_on_child_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +68,20 @@ ActiveRecord::Schema.define(version: 20170317131809) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "civility"
+    t.string   "main_phone"
+    t.string   "secondary_phone"
+    t.string   "activity_admin"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "articles", "activities"
+  add_foreign_key "children", "users"
+  add_foreign_key "inscriptions", "activities"
+  add_foreign_key "inscriptions", "children"
 end
