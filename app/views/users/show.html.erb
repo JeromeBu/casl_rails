@@ -7,9 +7,31 @@
   <li>Nom: <%= current_user.last_name %></li>
   <li>Adresse: <%= current_user.address %></li>
   <li>Téléphone principale: <%= current_user.main_phone %></li>
-  <% unless current_user.secondary_phone.nil?  %>
+  <% unless current_user.secondary_phone.blank?  %>
     <li>Téléphone secondaire: <%= current_user.secondary_phone %></li>
   <% end %>
 </ul>
 
 <%= link_to "Modifier vos informations", edit_user_path(current_user) %>
+<br>
+<%= link_to "Ajouter un enfant", new_user_child_path(current_user) %>
+
+<h3>Vos enfants</h3>
+
+<% @children.each do |child| %>
+  <div class="enfant">
+    <li>Prénom: <%= child.first_name %></li>
+    <li>Nom: <%= child.last_name %></li>
+    <li>Sexe: <%= child.sex %></li>
+    <li>Date de naissance: <%= child.birth_date %></li>
+    <li>Ecole: <%= child.school %></li>
+    <li>Class: <%= child.class %></li>
+    <% unless child.extra_info.blank?  %>
+      <li>Information complémentaire: <%= child.extra_info %></li>
+    <% end %>
+  </div>
+  <%= link_to "Modifier", edit_child_path(child) %>
+  <br>
+  <%= link_to "Supprimer", child_path(child), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cet enfant ? Il sera automatiquement supprimé des toutes les activités auxquelles il est inscrit."} %>
+  <br>
+<% end %>

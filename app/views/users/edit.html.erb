@@ -1,3 +1,26 @@
-<h1>Modifiez vos informations</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>Modification de vos données</h1>
+
+      <%= simple_form_for @user do |f| %>
+
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :civility, label: "Civilité", :collection => [ "M.", "Mme", "Mlle"]%>
+          <%= f.input :first_name, label: "Prénom" %>
+          <%= f.input :last_name, label: "Nom" %>
+          <%= f.input :address, label: "Adresse" %>
+          <%= f.input :main_phone, label: "Téléphone principal" %>
+          <%= f.input :secondary_phone, label: "Téléphone secondaire" %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Modifier mes données" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
