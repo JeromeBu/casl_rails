@@ -1,20 +1,20 @@
-<h1>Bienvenue <%= current_user.first_name + " " + current_user.last_name %></h1>
+<h1>Bienvenue <%= @user.first_name + " " + @user.last_name %></h1>
 
 <h3>Vos informations :</h3>
 <ul>
-  <li>Civilité: <%= current_user.civility %></li>
-  <li>Prénom: <%= current_user.first_name %></li>
-  <li>Nom: <%= current_user.last_name %></li>
-  <li>Adresse: <%= current_user.address %></li>
-  <li>Téléphone principale: <%= current_user.main_phone %></li>
-  <% unless current_user.secondary_phone.blank?  %>
-    <li>Téléphone secondaire: <%= current_user.secondary_phone %></li>
+  <li>Civilité: <%= @user.civility %></li>
+  <li>Prénom: <%= @user.first_name %></li>
+  <li>Nom: <%= @user.last_name %></li>
+  <li>Adresse: <%= @user.address %></li>
+  <li>Téléphone principale: <%= @user.main_phone %></li>
+  <% unless @user.secondary_phone.blank?  %>
+    <li>Téléphone secondaire: <%= @user.secondary_phone %></li>
   <% end %>
 </ul>
 
-<%= link_to "Modifier vos informations", edit_user_path(current_user) %>
+<%= link_to "Modifier vos informations", edit_user_path(@user) %>
 <br>
-<%= link_to "Ajouter un enfant", new_user_child_path(current_user) %>
+<%= link_to "Ajouter un enfant", new_user_child_path(@user) %>
 
 <h3>Vos enfants</h3>
 
