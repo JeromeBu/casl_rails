@@ -1,7 +1,21 @@
 <h1>index des activités</h1>
-
-<ul>
-  <% @activities.each do |activity| %>
-  <li> <%= link_to activity.title, activity_path(activity) %></li>
+<% if user_signed_in? %>
+  <% if current_user.admin %>
+    <p><%= link_to "Ajouter une activité", new_activity_path %></p>
   <% end %>
-</ul>
+<% end %>
+
+<div class="row">
+  <% @activities.each do |activity| %>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path activity.photo.path, height: 300, width: 400, crop: :fill %>');">
+        <div class="card-description">
+          <h2><%= activity.title %></h2>
+          <p><%= activity.subtitle %></p>
+        </div>
+
+        <%= link_to activity.title, activity_path(activity), class: "card-link"%>
+      </div>
+    </div>
+  <% end %>
+</div>

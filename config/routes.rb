@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+  mount Attachinary::Engine => "/attachinary"
   root to: 'activities#index'
-  resources :activities, only: [:index, :show]
+  resources :activities, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :inscriptions, only: [:new, :create]
+  end
   resources :users, only: [:show, :edit, :update] do
     resources :children, only: [:new, :create, :edit, :update]
   end

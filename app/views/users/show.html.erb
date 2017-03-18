@@ -25,7 +25,9 @@
     <li>Sexe: <%= child.sex %></li>
     <li>Date de naissance: <%= child.birth_date %></li>
     <li>Ecole: <%= child.school %></li>
-    <li>Class: <%= child.class %></li>
+    <% unless child.classe.blank?  %>
+      <li>Classe: <%= child.classe %></li>
+    <% end %>
     <% unless child.extra_info.blank?  %>
       <li>Information complémentaire: <%= child.extra_info %></li>
     <% end %>

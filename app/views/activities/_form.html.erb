@@ -1,0 +1,15 @@
+<%= simple_form_for @activity do |f| %>
+
+        <div class="form-inputs">
+          <%= f.input :title, label: "Titre" %>
+          <%= f.input :subtitle, label: "Sous-titre" %>
+          <%= f.input :max_participants, label: "Nombre de places" %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Valider", class: "btn btn-primary" %>
+        </div>
+        <div>
+          <%= link_to "Annuler", activities_path %>
+        </div>
+      <% end %>

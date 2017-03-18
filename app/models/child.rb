@@ -1,6 +1,6 @@
 class Child < ApplicationRecord
   belongs_to :user
-  has_many :inscriptions
+  has_many :inscriptions, dependent: :destroy
 
   validates :first_name, presence: {:message => "Veuillez remplir ce champ"}
   validates :last_name, presence: {:message => "Veuillez remplir ce champ"}

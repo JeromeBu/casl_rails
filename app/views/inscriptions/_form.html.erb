@@ -1,0 +1,17 @@
+<%= simple_form_for [@activity, @inscription] do |f| %>
+
+        <div class="form-inputs">
+          <%= f.hidden_field :activity_id, value: @activity.id %>
+          <p>Activité : <%= @activity.title %></p>
+          <%= f.input :child_id, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.id} %>
+
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Inscrire", class: "btn btn-primary" %>
+        </div>
+        <div>
+          <%= link_to "Annuler", activities_path %>
+        </div>
+      <% end %>
+
