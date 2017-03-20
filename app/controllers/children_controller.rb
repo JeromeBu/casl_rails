@@ -6,10 +6,12 @@ class ChildrenController < ApplicationController
 
   def new
     @child = Child.new
+    authorize @child
   end
 
   def create
     @child = Child.new(child_params)
+    authorize @child
     @user = @child.user
     if @child.save
       redirect_to user_path(current_user)
@@ -39,6 +41,7 @@ class ChildrenController < ApplicationController
 
   def set_child
     @child = Child.find(params[:id])
+    authorize @child
   end
 
   def set_user

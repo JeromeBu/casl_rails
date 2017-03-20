@@ -13,6 +13,15 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
+       <!-- Affiche si le user est admin d'une activité -->
+        <% unless current_user.activity_admin.blank? %>
+          <h3>Vous etes admin de l'activité : <%= current_user.activity_admin %></h3>
+        <% end %>
+
+        <!-- Affiche si le user est admin -->
+        <% if current_user.admin %>
+          <h3>Vous etes admin</h3>
+        <% end %>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">

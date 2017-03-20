@@ -3,7 +3,9 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:edit, :update, :show]
 
   def index
-    @activities = Activity.all
+    # @activities = Activity.all
+    @activity = Activity.new
+    @activities = policy_scope(Activity)
   end
 
   def show
@@ -13,12 +15,18 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
+    authorize @activity
   end
 
 
   def create
     @activity = Activity.new(activity_params)
+    # Photo par default si pas de photo choisie
+    authorize @activity
+
     if @activity.save
+      url = "http://res.cloudinary.com/dpmc03d5t/image/upload/v1489930552/lp2uzwtcbreav53nzqvc.jpg"
+      @activity.photo_url = url if @activity.photo.blank?
       redirect_to activity_path(@activity)
     else
       render :new
@@ -40,6 +48,7 @@ class ActivitiesController < ApplicationController
 
   def set_activity
     @activity = Activity.find(params[:id])
+    authorize @activity
   end
 
   def activity_params

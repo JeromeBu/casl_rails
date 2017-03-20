@@ -26,6 +26,9 @@ source "https://rails-assets.org" do
   gem 'rails-assets-bootstrap-datepicker'
 end
 
+gem "pundit"
+
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'

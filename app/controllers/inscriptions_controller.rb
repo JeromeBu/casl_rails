@@ -2,6 +2,7 @@ class InscriptionsController < ApplicationController
 
   def create
     @inscription = Inscription.new(inscription_params)
+    authorize @inscription
     @activity = @inscription.activity
     if @inscription.save
       redirect_to activity_path(@activity)

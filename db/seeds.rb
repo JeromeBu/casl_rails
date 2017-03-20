@@ -15,8 +15,8 @@ Activity.create!(title: "Tennis", max_participants: 60)
 Activity.create!(title: "Bridge", max_participants: 50)
 Activity.create!(title: "Musique", max_participants: 60)
 
-User.create!(email: "jerome@mail.com",admin: true, password: "azerty", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
-User.create!(email: "jerome2@mail.com", password: "azerty", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
+User.create!(email: "jerome@mail.com",admin: true, password: "qsdfjk", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
+User.create!(email: "jerome2@mail.com", password: "qsdfjk", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
 
 
 puts "seeding went well !"

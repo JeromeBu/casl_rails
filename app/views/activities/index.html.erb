@@ -1,21 +1,28 @@
 <h1>index des activités</h1>
-<% if user_signed_in? %>
-  <% if current_user.admin %>
+<% if policy(@activity).create? %>
     <p><%= link_to "Ajouter une activité", new_activity_path %></p>
-  <% end %>
 <% end %>
 
-<div class="row">
-  <% @activities.each do |activity| %>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path activity.photo.path, height: 300, width: 400, crop: :fill %>');">
-        <div class="card-description">
-          <h2><%= activity.title %></h2>
-          <p><%= activity.subtitle %></p>
+<div class="container">
+  <div class="row">
+    <% @activities.each do |activity| %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="index-card">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path activity.photo.path, height: 300, width: 400, crop: :fill %>');">
+            <div class="card-description">
+              <h2><%= activity.title %></h2>
+              <p><%= activity.subtitle %></p>
+            </div>
+            <%= link_to activity.title, activity_path(activity), class: "card-link"%>
+          </div>
+          <% if policy(activity).destroy? %>
+            <%= link_to "Supprimer l'activité", activity_path(activity), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cette activité ? \n \n Cette action est iréversible et entraine la supression de la liste des inscrits."} %>
+          <% end %>
+          <% if policy(activity).update? %>
+            <%= link_to "Modifier", edit_activity_path(activity) %>
+          <% end %>
         </div>
-
-        <%= link_to activity.title, activity_path(activity), class: "card-link"%>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

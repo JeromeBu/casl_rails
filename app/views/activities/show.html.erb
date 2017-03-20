@@ -2,21 +2,33 @@
   <div class="row">
     <!-- description de l'activité -->
     <div class="col-xs-12 col-sm-9">
-      <h1><%= @activity.title %></h1>
+      <div class="card-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @activity.photo.path, height: 400, width: 500, crop: :fill %>');">
+          <div class="card-description">
+            <h2><%= @activity.title %></h2>
+            <p><%= @activity.subtitle %></p>
+          </div>
+      </div>
 
-      <h2><%= @activity.subtitle %></h2>
 
-      <% if user_signed_in? %>
-        <% if current_user.admin %>
+        <% if policy(@activity).update? %>
           <p><%= link_to "Modifier l'activité", edit_activity_path(@activity) %></p>
         <% end %>
-      <% end %>
+
     </div>
 
     <!-- Lien pour inscritption -->
     <div class="col-xs-12 col-sm-3">
       <h3> Inscrire mon enfant </h3>
+      <% if user_signed_in? %>
         <%= render 'inscriptions/form' %>
+      <% else %>
+        <p>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary" %>
+        </p>
+        <p>
+          <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary" %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>
