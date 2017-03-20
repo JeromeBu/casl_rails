@@ -3,7 +3,7 @@
         <div class="form-inputs">
           <%= f.hidden_field :activity_id, value: @activity.id %>
           <p>Activité : <%= @activity.title %></p>
-          <%= f.input :child_id, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.id} %>
+          <%= f.input :child, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.first_name} %>
 
         </div>
 

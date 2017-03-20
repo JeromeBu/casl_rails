@@ -6,7 +6,6 @@ class InscriptionPolicy < ApplicationPolicy
   end
 
   def create?
-    raise
     user.children.include?(record.child)
   end
 end
