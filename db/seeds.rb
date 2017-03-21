@@ -10,13 +10,20 @@
 Activity.destroy_all
 User.destroy_all
 
-Activity.create!(title: "Judo", subtitle: "Bienvenue au dojo", max_participants: 50)
-Activity.create!(title: "Tennis", max_participants: 60)
-Activity.create!(title: "Bridge", max_participants: 50)
-Activity.create!(title: "Musique", max_participants: 60)
+judo = Activity.create!(title: "Judo", subtitle: "Bienvenue au dojo", max_participants: 50)
+judo.photo_url = "http://res.cloudinary.com/dpmc03d5t/image/upload/v1489853980/CASL/oef6ei3lytwtd15mi5tz.jpg"
+
+tennis = Activity.create!(title: "Tennis", subtitle: "A la volée", max_participants: 60)
+tennis.photo_url = "http://res.cloudinary.com/dpmc03d5t/image/upload/v1489853519/CASL/ctztnn1d4kuus1tugxpy.jpg"
+
+bridge = Activity.create!(title: "Bridge", max_participants: 50)
+bridge.photo_url = "http://res.cloudinary.com/dpmc03d5t/image/upload/v1489853668/CASL/wzgybzu8lmgtpikcjwjf.jpg"
+
+musique = Activity.create!(title: "Musique", max_participants: 60)
+musique.photo_url = "http://res.cloudinary.com/dpmc03d5t/image/upload/v1489853642/CASL/lrkc6lcmteuguwkr0lxw.jpg"
 
 User.create!(email: "jerome@mail.com",admin: true, password: "qsdfjk", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
-User.create!(email: "jerome2@mail.com", password: "qsdfjk", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898")
+User.create!(email: "jerome2@mail.com", password: "qsdfjk", civility: "M." ,first_name: "Jérôme", last_name: "Burkard", address: "Paris", main_phone: "067898", activity_admin: "Judo")
 
 
 puts "seeding went well !"
