@@ -1,8 +1,10 @@
 class ChildrenController < ApplicationController
 
   before_action :set_user, only: [:new, :edit]
-  before_action :set_child, only: [:edit, :update, :destroy]
+  before_action :set_child, only: [:edit, :update, :destroy, :show]
 
+  def show
+  end
 
   def new
     @child = Child.new

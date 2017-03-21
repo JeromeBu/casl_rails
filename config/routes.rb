@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :children, only: [:new, :create, :edit, :update]
   end
-  resources :children, only: [:edit, :update, :destroy]
+  resources :children, only: [:show, :edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

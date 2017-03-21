@@ -1,39 +1,75 @@
-<h1>Bienvenue <%= @user.first_name + " " + @user.last_name %></h1>
+<div class="container">
+  <h1>Bienvenue <%= @user.first_name + " " + @user.last_name %></h1>
+  <hr>
 
-<h3>Vos informations :</h3>
-<ul>
-  <li>Civilité: <%= @user.civility %></li>
-  <li>Prénom: <%= @user.first_name %></li>
-  <li>Nom: <%= @user.last_name %></li>
-  <li>Adresse: <%= @user.address %></li>
-  <li>Téléphone principale: <%= @user.main_phone %></li>
-  <% unless @user.secondary_phone.blank?  %>
-    <li>Téléphone secondaire: <%= @user.secondary_phone %></li>
-  <% end %>
-</ul>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="user-col">
+        <h3>Vos informations :</h3>
+        <table class="user-table">
+          <tr>
+            <th>E-mail</th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th>Civilité</th>
+            <td><%= @user.civility %></td>
+          </tr>
+          <tr>
+            <th>Prénom</th>
+            <td><%= @user.first_name %></td>
+          </tr>
+          <tr>
+            <th>Nom</th>
+            <td><%= @user.last_name%></td>
+          </tr>
+          <tr>
+            <th>Adresse</th>
+            <td><%= @user.address%></td>
+          </tr>
+          <tr>
+            <th>Téléphone principal</th>
+            <td><%= @user.main_phone%></td>
+          </tr>
+          <% unless @user.secondary_phone.blank?  %>
+            <tr>
+              <th>Téléphone secondaire</th>
+              <td><%= @user.secondary_phone%></td>
+            </tr>
+          <% end %>
+        </table>
 
-<%= link_to "Modifier vos informations", edit_user_path(@user) %>
-<br>
-<%= link_to "Ajouter un enfant", new_user_child_path(@user) %>
+        <div class="div-link">
+          <%= link_to "Modifier vos informations", edit_user_path(@user)%>
+        </div>
 
-<h3>Vos enfants</h3>
+      </div>
+    </div>
 
-<% @children.each do |child| %>
-  <div class="enfant">
-    <li>Prénom: <%= child.first_name %></li>
-    <li>Nom: <%= child.last_name %></li>
-    <li>Sexe: <%= child.sex %></li>
-    <li>Date de naissance: <%= child.birth_date %></li>
-    <li>Ecole: <%= child.school %></li>
-    <% unless child.classe.blank?  %>
-      <li>Classe: <%= child.classe %></li>
-    <% end %>
-    <% unless child.extra_info.blank?  %>
-      <li>Information complémentaire: <%= child.extra_info %></li>
-    <% end %>
+
+    <div class="col-xs-12 col-sm-7 col-sm-offset-1">
+      <div class="user-col">
+        <h3>Vos enfants</h3>
+        <table class="children-table">
+          <tr>
+            <th>Lien</th>
+            <th>Prénom</th>
+            <th>Sexe</th>
+            <th>Date de naissance</th>
+          </tr>
+          <% @children.each do |child| %>
+            <tr>
+              <td><%= link_to "Détail", child_path(child) %></td>
+              <td><%= child.first_name %></td>
+              <td><%= child.sex %></td>
+              <td><%= child.birth_date %></td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="div-link">
+          <%= link_to "Ajouter un enfant", new_user_child_path(@user)%>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= link_to "Modifier", edit_child_path(child) %>
-  <br>
-  <%= link_to "Supprimer", child_path(child), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cet enfant ? Il sera automatiquement supprimé des toutes les activités auxquelles il est inscrit."} %>
-  <br>
-<% end %>
+</div>

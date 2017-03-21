@@ -1,0 +1,36 @@
+.user-col h3 {
+  font-size: 18px;
+  border: 1px;
+  margin: 0;
+  padding: 15px 0;
+  background-color: $main;
+  border-bottom: 1px solid $gray;
+}
+
+
+.user-col {
+  border : 1px solid;
+  text-align: center;
+}
+
+.user-col a {
+  width: 100%;
+  text-decoration: none;
+  bottom: 20px;
+}
+
+.div-link {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px;
+  border-color: red;
+}
+
+.div-link a {
+  color: $darker;
+}
+
+.div-link a:hover {
+  color: $main;
+}
+
