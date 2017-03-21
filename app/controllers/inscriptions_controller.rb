@@ -15,6 +15,6 @@ class InscriptionsController < ApplicationController
   private
 
   def inscription_params
-    params.require(:inscription).permit(:activity_id, :child)
+    params.require(:inscription).permit(:activity_id, :child_id)
   end
 end
