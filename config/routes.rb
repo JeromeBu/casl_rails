@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'activities#index'
   resources :activities, only: [:index, :show, :new, :create, :edit, :update] do
     resources :inscriptions, only: [:new, :create]
+    resources :articles, only: [:new, :create]
   end
   resources :users, only: [:show, :edit, :update] do
     resources :children, only: [:index, :new, :create, :edit, :update]

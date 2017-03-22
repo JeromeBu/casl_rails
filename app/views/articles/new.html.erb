@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h1>Création d'article</h1>
+
+      <%= simple_form_for [@activity, @article] do |f| %>
+
+        <div class="form-inputs">
+          <%= f.input :title, label: "Titre de l'article" %>
+          <%= f.input :content, label: "Contenu" %>
+          <p>Id de l'activité<%= @activity.id %></p>
+          <%= f.hidden_field :activity_id, value: @activity.id %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Créer l'article", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

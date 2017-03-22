@@ -9,19 +9,28 @@
           </div>
       </div>
 
+      <% @activity.articles.each do |article| %>
+        <div class="article">
+          <h4><%= article.title%></h4>
+          <p><%= simple_format(article.content)%></p>
+        </div>
+      <br>
+      <% end %>
 
-        <% if policy(@activity).update? %>
-          <p><%= link_to "Modifier l'activité", edit_activity_path(@activity) %></p>
-        <% end %>
+
+
 
     </div>
 
     <!-- Lien pour inscritption -->
     <div class="col-xs-12 col-sm-3">
-      <h3> Inscrire mon enfant </h3>
+      <br>
       <% if user_signed_in? %>
+        <p>Sont inscrit:&nbsp;<%= current_user.children.select{ |child| @activity.children.include?(child)}.map{ |child| child.first_name + ", "}.join.chop.chop %></p>
+        <h3> Inscrire mon enfant </h3>
         <%= render 'inscriptions/form' %>
       <% else %>
+        <h4> Vous souhaitez inscrire votre enfant ?</h4>
         <p>
           <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary" %>
         </p>
@@ -29,6 +38,19 @@
           <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary" %>
         </p>
       <% end %>
+
+      <hr>
+
+      <% if policy(@activity).update? %>
+        <%= link_to "Modifier l'activité", edit_activity_path(@activity) %>
+      <% end %>
+
+      <br>
+
+      <% if policy(@article).create? %>
+        <%= link_to "Ajouter un article", new_activity_article_path(@activity) %>
+      <% end %>
+
     </div>
   </div>
 </div>

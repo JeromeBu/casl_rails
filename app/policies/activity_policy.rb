@@ -10,7 +10,7 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def update?
-    is_user_activity_admin_or_admin?
+    admin?
   end
 
   def destroy?
@@ -22,14 +22,6 @@ class ActivityPolicy < ApplicationPolicy
   def admin?
     if user
       user.admin
-    else
-      false
-    end
-  end
-
-  def is_user_activity_admin_or_admin?
-    if user
-      user.admin || user.activity_admin == record.title
     else
       false
     end
