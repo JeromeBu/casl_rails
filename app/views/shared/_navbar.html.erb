@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <h1>CASL</h1>
+    <h1 id="logo-title"><i class="fa fa-home"></i> CASL</h1>
     <!-- ajouter le égal pour faire apparaitre le logo -->
     <% image_tag "logo.png" %>
   <% end %>
@@ -15,27 +15,29 @@
 
        <!-- Affiche si le user est admin d'une activité -->
         <% unless current_user.activity_admin.blank? %>
-          <h3>Vous etes admin de l'activité : <%= current_user.activity_admin %></h3>
+          <h3>Vous etes admin de l'activité : <%= current_user.activity_admin %>.&nbsp;&nbsp;&nbsp;&nbsp;</h3>
         <% end %>
 
         <!-- Affiche si le user est admin -->
         <% if current_user.admin %>
-          <h3>Vous etes admin</h3>
+          <h3>Vous etes admin.&nbsp;&nbsp;&nbsp;&nbsp;</h3>
         <% end %>
 
       <!-- Profile picture and dropdown -->
+      <h3>
+      <%= link_to user_path(current_user) do %>
+        <i class="fa fa-user"></i> <%= current_user.first_name + " " + current_user.last_name %>
+      <% end %>
+      </h3>
+
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+          <h3 class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><i class="fa fa-power-off" aria-hidden="true"></i></h3>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to activities_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Activités") %>
               <% end %>
             </li>
             <li>
@@ -56,15 +58,42 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
+
+  <% if user_signed_in? %>
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
+            <% end %>
+          </li>
+          <li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Se déconnecter") %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to new_user_session_path do %>
+              <i class="fa fa-user"></i> <%= t(".profile", default: "Se connecter") %>
+            <% end %>
+          </li>
+          <li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+
 </div>
 

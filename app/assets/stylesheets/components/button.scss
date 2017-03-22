@@ -6,6 +6,7 @@
 }
 
 .button:hover {
-  color: $darker;
-  transition: 0.5s;
+  background-color: $red;
+  transition: 0.3s;
+  color: $lightest;
 }

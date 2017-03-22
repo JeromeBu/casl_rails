@@ -6,7 +6,7 @@
           <%= f.input :child_id, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.first_name} %>
 
         </div>
-        <p>Votre enfant nr'apparait pas dans la liste ?</p>
+        <p>Votre enfant n'apparait pas dans la liste ?</p>
         <%= link_to "Ajouter un enfant", new_user_child_path(current_user) %>
         <br>
         <br>

@@ -53,14 +53,14 @@
         <table class="children-table">
           <tr>
             <th>Prénom</th>
-            <th>Sexe</th>
             <th>Date de naissance</th>
+            <th>Inscit aux activités</th>
           </tr>
           <% @children.each do |child| %>
             <tr>
               <td><%= child.first_name %></td>
-              <td><%= child.sex %></td>
               <td><%= child.birth_date %></td>
+              <td><%= child.activities.map{ |activity| activity.title + ", "}.join.chop.chop %></td>
             </tr>
           <% end %>
         </table>
