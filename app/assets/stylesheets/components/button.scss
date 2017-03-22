@@ -1,0 +1,11 @@
+.button {
+  padding: 15px;
+  background-color: $redish;
+  color: $lightest;
+  width: 100%;
+}
+
+.button:hover {
+  color: $darker;
+  transition: 0.5s;
+}

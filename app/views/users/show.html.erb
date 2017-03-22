@@ -3,9 +3,9 @@
   <hr>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-5">
       <div class="user-col">
-        <h3>Vos informations :</h3>
+        <h3>Vos informations</h3>
         <table class="user-table">
           <tr>
             <th>E-mail</th>
@@ -47,19 +47,17 @@
     </div>
 
 
-    <div class="col-xs-12 col-sm-7 col-sm-offset-1">
+    <div class="col-xs-12 col-sm-7">
       <div class="user-col">
         <h3>Vos enfants</h3>
         <table class="children-table">
           <tr>
-            <th>Lien</th>
             <th>Prénom</th>
             <th>Sexe</th>
             <th>Date de naissance</th>
           </tr>
           <% @children.each do |child| %>
             <tr>
-              <td><%= link_to "Détail", child_path(child) %></td>
               <td><%= child.first_name %></td>
               <td><%= child.sex %></td>
               <td><%= child.birth_date %></td>
@@ -69,6 +67,7 @@
         <div class="div-link">
           <%= link_to "Ajouter un enfant", new_user_child_path(@user)%>
         </div>
+        <%= link_to "Détail sur les enfants", user_children_path(@user) %>
       </div>
     </div>
   </div>

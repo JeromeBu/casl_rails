@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Vos enfants : </h1>
+  <hr>
+  <div class="child-show">
+    <% @children.each do |child| %>
+      <div class="user-col">
+        <h3><%= child.first_name %></h3>
+        <table class="user-table text-left ">
+          <tr>
+            <th>Prénom</th>
+            <td><%= child.first_name %></td>
+          </tr>
+          <tr>
+            <th>Nom</th>
+            <td><%= child.last_name%></td>
+          </tr>
+          <tr>
+            <th>Sexe</th>
+            <td><%= child.sex %></td>
+          </tr>
+          <tr>
+            <th>Date de naissance</th>
+            <td><%= child.birth_date %></td>
+          </tr>
+          <tr>
+            <th>Ecole</th>
+            <td><%= child.school%></td>
+          </tr>
+          <% unless child.classe.blank?  %>
+            <tr>
+              <th>Classe</th>
+              <td><%= child.classe%></td>
+            </tr>
+          <% end %>
+          <% unless child.extra_info.blank?  %>
+            <tr>
+              <th>Information complémentaire</th>
+              <td><%= child.extra_info%></td>
+            </tr>
+          <% end %>
+        </table>
+
+        <br>
+        <%= link_to "Modifier", edit_child_path(child) %>
+
+        <%= link_to "Supprimer", child_path(child), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cet enfant ? \n \n Il sera automatiquement supprimé des toutes les activités auxquelles il est inscrit."} %>
+        <br>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

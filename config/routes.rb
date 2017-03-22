@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :inscriptions, only: [:new, :create]
   end
   resources :users, only: [:show, :edit, :update] do
-    resources :children, only: [:new, :create, :edit, :update]
+    resources :children, only: [:index, :new, :create, :edit, :update]
   end
-  resources :children, only: [:show, :edit, :update, :destroy]
+  resources :children, only: [:edit, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

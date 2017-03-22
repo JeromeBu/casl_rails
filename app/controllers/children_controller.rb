@@ -1,9 +1,10 @@
 class ChildrenController < ApplicationController
 
-  before_action :set_user, only: [:new, :edit]
-  before_action :set_child, only: [:edit, :update, :destroy, :show]
+  before_action :set_user, only: [:new, :edit, :index]
+  before_action :set_child, only: [:edit, :update, :destroy]
 
-  def show
+  def index
+    @children = policy_scope(Child).where(user: @user).order(birth_date: :desc)
   end
 
   def new

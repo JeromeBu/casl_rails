@@ -2,7 +2,12 @@
 
         <div class="form-inputs">
           <%= f.input :first_name, label: "Prénom" %>
-          <%= f.input :last_name, label: "Nom" %>
+          <% @last_name = "" %>
+          <% if @child.last_name.blank? %>
+            <%= f.input :last_name, label: "Nom", input_html: { value: @user.last_name } %>
+          <% else %>
+            <%= f.input :last_name, label: "Nom" %>
+          <% end %>
           <%= f.input :sex, label: "Sexe", :collection => [ "Garçon", "Fille"]%>
           <%= f.input :birth_date,  label: "Date de naissance", placeholder: "jj/mm/aaaa", as: :string, input_html: {class: "datepicker" } %>
           <%= f.input :school, label: "Ecole" %>
