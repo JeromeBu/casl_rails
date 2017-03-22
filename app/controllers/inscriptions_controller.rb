@@ -1,5 +1,11 @@
 class InscriptionsController < ApplicationController
 
+  def index
+    @activity = Activity.find(params[:activity_id])
+    authorize @activity
+    @inscriptions = policy_scope(Inscription).where(activity: @activity).order(created_at: :desc)
+  end
+
   def create
     @inscription = Inscription.new(inscription_params)
     @inscription.child = Child.where(user: current_user).find_by(first_name: inscription_params[:child_id])

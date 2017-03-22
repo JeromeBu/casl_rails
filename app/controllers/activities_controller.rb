@@ -10,7 +10,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @inscription = Inscription.new
-    @article = Article.new
+    @article = Article.new(activity: @activity)
   end
 
 

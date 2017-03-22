@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   def new
     @activity = Activity.find(params[:activity_id])
-    @article = Article.new
+    @article = Article.new(activity: @activity)
     authorize @article
   end
 

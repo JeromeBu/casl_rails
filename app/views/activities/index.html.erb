@@ -1,10 +1,10 @@
-<h1>index des activités</h1>
-<% if policy(@activity).create? %>
-    <p><%= link_to "Ajouter une activité", new_activity_path %></p>
-<% end %>
+<h1>Nos activités</h1>
 
 <div class="container">
   <div class="row">
+    <% if policy(@activity).create? %>
+        <p><%= link_to "Ajouter une activité", new_activity_path %></p>
+    <% end %>
     <% @activities.each do |activity| %>
       <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="index-card">

@@ -1,0 +1,20 @@
+<h1>Liste des inscrits à l'activité : <%= @activity.title  %></h1>
+
+<div class="container">
+    <table class="children-table">
+      <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Date de naissance</th>
+        <th>Date d'inscription</th>
+      </tr>
+      <% @inscriptions.each do |inscription| %>
+        <tr>
+          <td><%= inscription.child.first_name %></td>
+          <td><%= inscription.child.last_name %></td>
+          <td><%= inscription.child.birth_date %></td>
+          <td><%= inscription.created_at %></td>
+        </tr>
+      <% end %>
+    </table>
+</div>

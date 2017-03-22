@@ -14,19 +14,15 @@
           <h4><%= article.title%></h4>
           <p><%= simple_format(article.content)%></p>
         </div>
-      <br>
+        <br>
       <% end %>
-
-
-
-
     </div>
 
     <!-- Lien pour inscritption -->
     <div class="col-xs-12 col-sm-3">
       <br>
       <% if user_signed_in? %>
-        <p>Sont inscrit:&nbsp;<%= current_user.children.select{ |child| @activity.children.include?(child)}.map{ |child| child.first_name + ", "}.join.chop.chop %></p>
+        <p>Enfants inscrit:&nbsp;<%= current_user.children.select{ |child| @activity.children.include?(child)}.map{ |child| child.first_name + ", "}.join.chop.chop %></p>
         <h3> Inscrire mon enfant </h3>
         <%= render 'inscriptions/form' %>
       <% else %>
@@ -51,6 +47,11 @@
         <%= link_to "Ajouter un article", new_activity_article_path(@activity) %>
       <% end %>
 
+      <br>
+
+      <% if policy(@activity).index? %>
+        <%= link_to "Liste des inscrits", activity_inscriptions_path(@activity) %>
+      <% end %>
     </div>
   </div>
 </div>
