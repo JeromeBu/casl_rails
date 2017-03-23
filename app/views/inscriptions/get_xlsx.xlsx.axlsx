@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Inscriptions") do |sheet|
+  @inscriptions.each do |inscription|
+    sheet.add_row [inscription.child.first_name, inscription.child.last_name, inscription.activity.title]
+  end
+end

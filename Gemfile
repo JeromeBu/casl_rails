@@ -22,6 +22,9 @@ gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 
+gem 'acts_as_xlsx',
+  :git => "git://github.com/straydogstudio/acts_as_xlsx.git"
+
 source "https://rails-assets.org" do
   gem 'rails-assets-bootstrap-datepicker'
 end

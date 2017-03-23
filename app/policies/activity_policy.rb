@@ -11,6 +11,10 @@ class ActivityPolicy < ApplicationPolicy
     is_user_activity_admin_or_admin?
   end
 
+  def get_xlsx?
+    is_user_activity_admin_or_admin?
+  end
+
   def create?
     admin?
   end

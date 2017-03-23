@@ -5,6 +5,10 @@ class InscriptionPolicy < ApplicationPolicy
     end
   end
 
+  def get_xlsx?
+    true
+  end
+
   def create?
     user.children.include?(record.child) || record.child.blank?
   end

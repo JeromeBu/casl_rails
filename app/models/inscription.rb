@@ -1,4 +1,5 @@
 class Inscription < ApplicationRecord
+  acts_as_xlsx
   belongs_to :child
   belongs_to :activity
 

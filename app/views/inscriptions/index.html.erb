@@ -1,6 +1,7 @@
 <h1>Liste des inscrits à l'activité : <%= @activity.title  %></h1>
 
 <div class="container">
+    <%= link_to "Télécharger la version Excel", activity_get_xlsx_path(@activity, format: "xlsx") %>
     <table class="children-table">
       <tr>
         <th>Prénom</th>
