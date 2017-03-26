@@ -1,0 +1,24 @@
+
+<%= simple_form_for(user, remote: true) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :civility, label: "Civilité", :collection => [ "M.", "Mme", "Mlle"]%>
+    <%= f.input :first_name, label: "Prénom" %>
+    <%= f.input :last_name, label: "Nom" %>
+    <%= f.input :address, label: "Adresse" %>
+    <%= f.input :main_phone, label: "Téléphone principal" %>
+    <%= f.input :secondary_phone, label: "Téléphone secondaire" %>
+  </div>
+
+  <div class="form-actions">
+
+  </div>
+
+  <div class="modal-footer">
+    <%= f.button :submit, "Modifier mes données", class: "button", id: "user-edit-modal-submit" %>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+
+<% end %>
+

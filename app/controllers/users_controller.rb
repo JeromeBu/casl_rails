@@ -8,10 +8,17 @@ class UsersController < ApplicationController
   end
 
   def update
+    @children = @user.children
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+        format.js
+      end
     else
-      render :edit
+      respond_to do |format|
+       format.html { render 'users/show' }
+       format.js
+     end
     end
   end
 

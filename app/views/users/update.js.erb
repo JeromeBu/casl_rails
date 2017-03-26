@@ -1,0 +1,24 @@
+// app/views/reviews/create.js.erb
+// Here you will write *javascript* that would be executed by the browser
+<% if @user.errors.any? %>
+  // // Render new review form with errors
+  // $('#user-edit-modal').modal('show')
+  $('.edit-modal-body').html("<%= j render 'users/modal_edit', user: @user %>");
+
+<% else %>
+
+  // fermeture de la modal
+   $('#user-edit-modal').modal('hide');
+
+
+  // mise à jour des données utilisateur
+  $("#email").html("<%= @user.email %>").slideDown();
+  $("#civility").html("<%= @user.civility %>").slideDown();
+  $("#prenom").html("<%= @user.first_name %>").slideDown();
+  $("#nom").html("<%= @user.last_name %>").slideDown();
+  $("#adresse").html("<%= @user.address %>").slideDown();
+  $("#tel-princ").html("<%= @user.main_phone %>").slideDown();
+  $("#tel-sec").html("<%= @user.secondary_phone %>").slideDown();
+
+<% end %>
+

@@ -9,32 +9,32 @@
         <table class="user-table">
           <tr>
             <th>E-mail</th>
-            <td><%= @user.email %></td>
+            <td id="email"><%= @user.email %></td>
           </tr>
           <tr>
             <th>Civilité</th>
-            <td><%= @user.civility %></td>
+            <td id="civility"><%= @user.civility %></td>
           </tr>
           <tr>
             <th>Prénom</th>
-            <td><%= @user.first_name %></td>
+            <td id="prenom"><%= @user.first_name %></td>
           </tr>
           <tr>
             <th>Nom</th>
-            <td><%= @user.last_name%></td>
+            <td id="nom"><%= @user.last_name%></td>
           </tr>
           <tr>
             <th>Adresse</th>
-            <td><%= @user.address%></td>
+            <td  id="adresse"><%= @user.address%></td>
           </tr>
           <tr>
             <th>Téléphone principal</th>
-            <td><%= @user.main_phone%></td>
+            <td  id="tel-princ"><%= @user.main_phone%></td>
           </tr>
           <% unless @user.secondary_phone.blank?  %>
             <tr>
               <th>Téléphone secondaire</th>
-              <td><%= @user.secondary_phone%></td>
+              <td id="tel-sec"><%= @user.secondary_phone%></td>
             </tr>
           <% end %>
         </table>
@@ -43,6 +43,10 @@
           <%= link_to "Modifier vos informations", edit_user_path(@user)%>
         </div>
 
+        <!-- Button trigger modal -->
+        <button type="button" class="button" data-toggle="modal" data-target="#user-edit-modal">
+          Modal edit
+        </button>
       </div>
     </div>
 
@@ -73,25 +77,18 @@
   </div>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="user-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modifier vos informations</h4>
+        <h1 class="modal-title" id="myModalLabel">Modifier vos informations</h1>
       </div>
-      <div class="modal-body">
-        <%= render '' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="edit-modal-body">
+        <%= render 'users/modal_edit', user: @user %>
       </div>
     </div>
   </div>
