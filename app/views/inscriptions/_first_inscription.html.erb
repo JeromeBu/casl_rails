@@ -1,0 +1,7 @@
+<br>
+<p>Vos enfants inscrits:</p>
+<ul id='inscrits'>
+  <% @activity.inscriptions.select{ |inscription| current_user.children.include?(inscription.child)}.each do |inscription|  %>
+      <%= render 'inscriptions/show', inscription: inscription %>
+    <% end %>
+</ul>

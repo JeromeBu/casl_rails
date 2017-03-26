@@ -54,7 +54,7 @@
           <tr>
             <th>Prénom</th>
             <th>Date de naissance</th>
-            <th>Inscit aux activités</th>
+            <th>Inscrit aux activités</th>
           </tr>
           <% @children.each do |child| %>
             <tr>
@@ -67,10 +67,33 @@
         <div class="div-link">
           <%= link_to "Ajouter un enfant", new_user_child_path(@user)%>
         </div>
-        <%= link_to "Détail sur les enfants", user_children_path(@user) %>
+        <%= link_to "Détails sur les enfants", user_children_path(@user) %>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modifier vos informations</h4>
+      </div>
+      <div class="modal-body">
+        <%= render '' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 

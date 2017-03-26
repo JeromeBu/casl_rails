@@ -19,12 +19,21 @@
     </div>
 
     <!-- Lien pour inscritption -->
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12 col-sm-3" id="child-inscription">
       <br>
       <% if user_signed_in? %>
-        <p>Enfants inscrit:&nbsp;<%= current_user.children.select{ |child| @activity.children.include?(child)}.map{ |child| child.first_name + ", "}.join.chop.chop %></p>
+        <% if current_user.children.select{ |child| @activity.children.include?(child)}.empty? %>
+          <p id="no-child">Vous n'avez aucun enfant inscrit à cette activité pour l'instant.</p>
+        <% else %>
+          <p>Vos enfants inscrits: </p>
+          <ul id="inscrits">
+            <% @activity.inscriptions.select{ |inscription| current_user.children.include?(inscription.child)}.each do |inscription|  %>
+              <%= render 'inscriptions/show', inscription: inscription %>
+            <% end %>
+          </ul>
+        <% end %>
         <h3> Inscrire mon enfant </h3>
-        <%= render 'inscriptions/form' %>
+        <%= render 'inscriptions/form', activity: @activity, inscription: @inscription %>
       <% else %>
         <h4> Vous souhaitez inscrire votre enfant ?</h4>
         <p>

@@ -4,7 +4,6 @@ class InscriptionsController < ApplicationController
     @activity = Activity.find(params[:activity_id])
     authorize @activity
     @inscriptions = policy_scope(Inscription).where(activity: @activity).order(created_at: :desc)
-    respond_to
   end
 
   def create
@@ -13,9 +12,16 @@ class InscriptionsController < ApplicationController
     authorize @inscription
     @activity = @inscription.activity
     if @inscription.save
-      redirect_to activity_path(@activity)
+      flash[:notice] = "#{@inscription.child.first_name} a bien été inscrit"
+      respond_to do |format|
+        format.html { redirect_to activity_path(@activity) }
+        format.js
+      end
     else
-      render 'activities/show'
+      respond_to do |format|
+        format.html { render 'activities/show', activity: @activity }
+        format.js
+      end
     end
   end
 

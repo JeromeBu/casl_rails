@@ -1,0 +1,35 @@
+// app/views/reviews/create.js.erb
+// Here you will write *javascript* that would be executed by the browser
+<% if @inscription.errors.any? %>
+  // Render new review form with errors
+  $('#new_inscription').html("<%= j render 'inscriptions/form', activity: @activity, inscription: @inscription %>");
+<% else %>
+  // Create a paragraph for the new review. But hide it.
+  var new_inscription = $("<%= j render 'inscriptions/show', inscription: @inscription %>").hide();
+  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+
+
+  // Test if a first inscription exit
+  if ($('#inscrits').length == 0) {
+    // Supprime le phrase disant qu'il n'y a pas d'enfant inscrit
+    $("#no-child").slideUp();
+    // ajoute la phrase : vos enfants
+    var first_inscription = $("<%= j render 'inscriptions/first_inscription' %>").hide();
+    $("#child-inscription").prepend(first_inscription);
+    // ajoute le dernier enfant à la liste
+    $('#inscrits').append(new_inscription);
+    new_inscription.slideDown();
+
+    // affiche la liste
+    first_inscription.slideDown();
+  } else {
+    // cas où il y a deja un enfant inscrit au chargement initial de la page
+  $('#inscrits').append(new_inscription);
+  // Show the new review with an animation!
+  new_inscription.slideDown();
+  }
+
+  // affiche la notifiaction d'ajout de l'enfant
+  $("#notice").html("<%= j render 'shared/flashes' %>").hide().slideDown();
+<% end %>
+
