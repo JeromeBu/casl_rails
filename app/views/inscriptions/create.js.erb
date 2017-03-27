@@ -18,7 +18,6 @@
     $("#child-inscription").prepend(first_inscription);
     // ajoute le dernier enfant à la liste
     $('#inscrits').append(new_inscription);
-    new_inscription.slideDown();
 
     // affiche la liste
     first_inscription.slideDown();
@@ -30,5 +29,7 @@
   }
   // affiche la notifiaction d'ajout de l'enfant
   $("#notice").html("<%= j render 'shared/flashes' %>").hide().slideDown();
+
+
 <% end %>
 

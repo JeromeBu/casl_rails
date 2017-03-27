@@ -20,5 +20,8 @@
   $("#tel-princ").html("<%= @user.main_phone %>").slideDown();
   $("#tel-sec").html("<%= @user.secondary_phone %>").slideDown();
 
+  // refraichit le formulaire avec les nouvelles infos
+  $('.edit-modal-body').html("<%= j render 'users/modal_edit', user: @user %>");
+
 <% end %>
 

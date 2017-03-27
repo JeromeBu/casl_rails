@@ -11,4 +11,5 @@ class User < ApplicationRecord
   validates :last_name, presence: {:message => "Veuillez remplir ce champ"}
   validates :address, presence: {:message => "Veuillez remplir ce champ"}
   validates :main_phone, presence: {:message => "Veuillez remplir ce champ"}
+  validates :main_phone, format: {:with => /\A(\+\d{2}\s?|0)\d\s?(\d\s?){8}\Z/, :message => "Veuillez renseigner un téléphone français" }
 end
