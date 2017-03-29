@@ -2,6 +2,8 @@ class ChildrenController < ApplicationController
 
   before_action :set_user, only: [:new, :edit, :index]
   before_action :set_child, only: [:edit, :update, :destroy]
+  after_filter :save_my_previous_url, only: [:new]
+
 
   def index
     @children = policy_scope(Child).where(user: @user).order(birth_date: :desc)
@@ -17,7 +19,11 @@ class ChildrenController < ApplicationController
     authorize @child
     @user = @child.user
     if @child.save
-      redirect_to user_path(current_user)
+      puts "---------------------------------------------"
+      puts "here is my previous url"
+      p session[:my_previous_url]
+      puts "-----------------------------------------------"
+      redirect_to session[:my_previous_url] || user_path(current_user)
     else
       render :new
     end
@@ -41,6 +47,15 @@ class ChildrenController < ApplicationController
   end
 
   private
+
+  def save_my_previous_url
+    # session[:previous_url] is a Rails built-in variable to save last url.
+    puts "---------------------------------------------"
+    puts "here is the last url"
+    p URI(request.referer).path
+    puts "-----------------------------------------------"
+    session[:my_previous_url] = URI(request.referer || '').path
+  end
 
   def set_child
     @child = Child.find(params[:id])
