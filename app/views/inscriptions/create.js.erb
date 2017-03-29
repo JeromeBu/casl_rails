@@ -27,9 +27,12 @@
   // Show the new review with an animation!
   new_inscription.slideDown();
   }
-  // affiche la notifiaction d'ajout de l'enfant
+  // affiche la notifiaction flash d'ajout de l'enfant
   $("#notice").html("<%= j render 'shared/flashes' %>").hide().slideDown();
 
+  // retire les erreurs du formulaire
+  $('.form-group').removeClass('has-error');
+  $('.help-block').hide();
 
 <% end %>
 

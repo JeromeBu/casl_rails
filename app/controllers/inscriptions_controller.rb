@@ -12,7 +12,11 @@ class InscriptionsController < ApplicationController
     authorize @inscription
     @activity = @inscription.activity
     if @inscription.save
-      flash[:notice] = "#{@inscription.child.first_name} a bien été inscrit"
+      if @inscription.child.sex == "Fille"
+        flash[:notice] = "#{@inscription.child.first_name} a bien été inscrite"
+     else
+       flash[:notice] = "#{@inscription.child.first_name} a bien été inscrit"
+     end
       respond_to do |format|
         format.html { redirect_to activity_path(@activity) }
         format.js
