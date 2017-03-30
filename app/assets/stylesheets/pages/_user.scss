@@ -1,16 +1,12 @@
-.user-col h3 {
-  font-size: 18px;
-  border: 1px;
-  margin: 0;
-  padding: 15px 0;
-  background-color: $main;
-  border-bottom: 1px solid $gray;
-}
-
-
 .user-col {
   border : 1px solid;
   text-align: center;
+}
+
+.user-col h3 {
+  font-size: 18px;
+  margin: 0;
+
 }
 
 .user-col a {
@@ -19,9 +15,55 @@
   bottom: 20px;
 }
 
+// <<-----------  partie titre des petites cards avec les infos
+.user-title {
+  border: 1px;
+  background-color: $main;
+  border-bottom: 1px solid $gray;
+  display: flex;
+  justify-content: space-between;
+  align-items : center;
+  padding: 12px 15px;
+}
+
+.edit-actions {
+  min-width: 80px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-actions a {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.tilte {
+
+}
+
+// Fin de la partie titre -------------->>
+
+.info-content {
+  margin-top: 15px;
+}
+
+
 .div-link {
   margin-top: 10px;
   margin-bottom: 15px;
 }
 
 
+
+
+
+// Permet d'éviter le contour bleu apres un clic sur un trigger de modal
+
+.modal-open .modal,.btn:focus{
+    outline:none!important
+}
+
+
+.modal-open .modal, a:focus{
+    outline:none!important
+}

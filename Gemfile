@@ -25,6 +25,11 @@ gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 
+
+# Gem pour avoir un editeur de text avec des options de format stylée
+gem "wysiwyg-rails"
+# ----------
+
 gem 'acts_as_xlsx',
   :git => "git://github.com/straydogstudio/acts_as_xlsx.git"
 

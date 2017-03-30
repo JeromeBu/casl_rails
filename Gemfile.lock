@@ -248,6 +248,9 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wysiwyg-rails (2.5.1)
+      font-awesome-sass (~> 4.4, >= 4.4.0)
+      railties (>= 3.2, < 6.0)
 
 PLATFORMS
   ruby
@@ -283,6 +286,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   stripe
   uglifier
+  wysiwyg-rails
 
 RUBY VERSION
    ruby 2.3.3p222

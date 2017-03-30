@@ -1,0 +1,22 @@
+// app/views/reviews/create.js.erb
+// Here you will write *javascript* that would be executed by the browser
+<% if @user.errors.any? %>
+  // // Render new review form with errors
+  // $('#user-edit-modal').modal('show')
+  $('.child-form-modal-body').html("<%= j render 'children/modal_form', user: @user, child: @child %>");
+
+<% else %>
+
+  // fermeture de la modal
+   $('#child-form-modal').modal('hide');
+
+
+  // mise à jour des données utilisateur
+  var new_child = $("<%= j render 'children/append_child', child: @child %>");
+  $('.children-table').append(new_child);
+  new_child.slideDown();
+
+  // refraichit le formulaire avec les nouvelles infos
+  $('.child-form-modal-body').html("<%= j render 'children/modal_form', user: @user, child: @child %>");
+
+<% end %>

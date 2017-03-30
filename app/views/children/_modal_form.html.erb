@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <%= simple_form_for([user, child], remote: true) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :first_name, label: "Prénom" %>
+      <% @last_name = "" %>
+      <% if child.last_name.blank? %>
+        <%= f.input :last_name, label: "Nom", input_html: { value: user.last_name } %>
+      <% else %>
+        <%= f.input :last_name, label: "Nom" %>
+      <% end %>
+      <%= f.input :sex, label: "Sexe", :collection => [ "Garçon", "Fille"]%>
+      <%= f.input :birth_date,  label: "Date de naissance", placeholder: "jj/mm/aaaa", as: :string, input_html: {class: "datepicker" } %>
+      <%= f.input :school, label: "Ecole" %>
+      <%= f.input :classe, label: "Classe" %>
+      <%= f.input :extra_info, label: "Informations complémentaires ?" %>
+      <%= f.hidden_field :user_id, value: user.id %>
+    </div>
+
+
+    <div class="modal-footer">
+        <%= f.button :submit, "Valider", class: "button", id: "child-form-modal-submit" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+    </div>
+  <% end %>
+</div>

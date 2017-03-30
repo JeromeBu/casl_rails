@@ -19,13 +19,15 @@ class ChildrenController < ApplicationController
     authorize @child
     @user = @child.user
     if @child.save
-      puts "---------------------------------------------"
-      puts "here is my previous url"
-      p session[:my_previous_url]
-      puts "-----------------------------------------------"
-      redirect_to session[:my_previous_url] || user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to session[:my_previous_url] || user_path(current_user) }
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.js
+      end
     end
   end
 
@@ -50,10 +52,6 @@ class ChildrenController < ApplicationController
 
   def save_my_previous_url
     # session[:previous_url] is a Rails built-in variable to save last url.
-    puts "---------------------------------------------"
-    puts "here is the last url"
-    p URI(request.referer).path
-    puts "-----------------------------------------------"
     session[:my_previous_url] = URI(request.referer || '').path
   end
 

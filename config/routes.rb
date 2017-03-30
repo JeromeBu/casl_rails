@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
   root to: 'activities#index'
 
-  resources :activities, only: [:index, :show, :new, :create, :edit, :update] do
+  resources :activities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :inscriptions, only: [:new, :create, :index]
     get 'get_xlsx', to: 'inscriptions#get_xlsx'
     resources :articles, only: [:new, :create]

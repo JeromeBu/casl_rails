@@ -12,7 +12,7 @@
       <% @activity.articles.each do |article| %>
         <div class="article">
           <h4><%= article.title%></h4>
-          <p><%= simple_format(article.content)%></p>
+          <%= simple_format(article.content)%>
         </div>
         <br>
       <% end %>

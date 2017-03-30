@@ -5,68 +5,99 @@
   <div class="row">
     <div class="col-xs-12 col-sm-5">
       <div class="user-col">
-        <h3>Vos informations</h3>
-        <table class="user-table">
-          <tr>
-            <th>E-mail</th>
-            <td id="email"><%= @user.email %></td>
-          </tr>
-          <tr>
-            <th>Civilité</th>
-            <td id="civility"><%= @user.civility %></td>
-          </tr>
-          <tr>
-            <th>Prénom</th>
-            <td id="prenom"><%= @user.first_name %></td>
-          </tr>
-          <tr>
-            <th>Nom</th>
-            <td id="nom"><%= @user.last_name%></td>
-          </tr>
-          <tr>
-            <th>Adresse</th>
-            <td  id="adresse"><%= @user.address%></td>
-          </tr>
-          <tr>
-            <th>Téléphone principal</th>
-            <td  id="tel-princ"><%= @user.main_phone%></td>
-          </tr>
-          <% unless @user.secondary_phone.blank?  %>
+        <div class="user-title">
+
+          <div class="title">
+            <h3>Vos informations </h3>
+          </div>
+          <div class="edit-actions">
+            <div class="edit-link" data-toggle="tooltip" data-placement="left" title="Modifier mes informations">
+              <%= link_to '#user-edit-modal', "data-toggle" => "modal" do %>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-content">
+          <table class="user-table">
             <tr>
-              <th>Téléphone secondaire</th>
-              <td id="tel-sec"><%= @user.secondary_phone%></td>
+              <th>E-mail</th>
+              <td id="email"><%= @user.email %></td>
             </tr>
-          <% end %>
-        </table>
+            <tr>
+              <th>Civilité</th>
+              <td id="civility"><%= @user.civility %></td>
+            </tr>
+            <tr>
+              <th>Prénom</th>
+              <td id="prenom"><%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <th>Nom</th>
+              <td id="nom"><%= @user.last_name%></td>
+            </tr>
+            <tr>
+              <th>Adresse</th>
+              <td id="adresse"><%= @user.address%></td>
+            </tr>
+            <tr>
+              <th>Téléphone principal</th>
+              <td  id="tel-princ"><%= @user.main_phone%></td>
+            </tr>
+            <% unless @user.secondary_phone.blank?  %>
+              <tr>
+                <th>Téléphone secondaire</th>
+                <td id="tel-sec"><%= @user.secondary_phone%></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
 
         <div class="div-link">
           <%= link_to "Modifier vos informations", edit_user_path(@user)%>
         </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="button" data-toggle="modal" data-target="#user-edit-modal">
-          Modal edit
-        </button>
       </div>
     </div>
 
 
     <div class="col-xs-12 col-sm-7">
       <div class="user-col">
-        <h3>Vos enfants</h3>
-        <table class="children-table">
-          <tr>
+        <div class="user-title">
+
+          <div class="title">
+            <h3>Vos enfants</h3>
+          </div>
+          <div class="edit-actions">
+            <div class="edit-link" data-toggle="tooltip" data-placement="left" title="Ajouter un enfant">
+              <%= link_to '#child-form-modal', "data-toggle" => "modal" do %>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              <% end %>
+            </div>
+            <div class="edit-link" data-toggle="tooltip" data-placement="top" title="Voir les actitivités">
+              <%= link_to activities_path do %>
+                <i class="fa fa-bicycle" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
             <th>Prénom</th>
             <th>Date de naissance</th>
             <th>Inscrit aux activités</th>
-          </tr>
+          </thead>
+          <tbody class="children-table">
           <% @children.each do |child| %>
-            <tr>
-              <td><%= child.first_name %></td>
-              <td><%= child.birth_date %></td>
-              <td><%= child.activities.map{ |activity| activity.title + ", "}.join.chop.chop %></td>
-            </tr>
-          <% end %>
+              <tr>
+                <td id="prenom_enfant_<%= child.id %>"><%= child.first_name %></td>
+                <td id="nom_enfant_<%= child.id %>"><%= child.birth_date %></td>
+                <td id="activ_enfant_<%= child.id %>"><%= child.activities.map{ |activity| activity.title + ", "}.join.chop.chop %></td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
         <div class="div-link">
           <%= link_to "Ajouter un enfant", new_user_child_path(@user)%>
@@ -79,7 +110,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal edit user -->
 <div class="modal fade" id="user-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -93,4 +124,27 @@
     </div>
   </div>
 </div>
+
+<!-- Modal add a child -->
+<div class="modal fade" id="child-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title" id="myModalLabel">Modifier vos informations</h1>
+      </div>
+      <div class="child-form-modal-body">
+        <%= render 'children/modal_form', user: @user, child: @child%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  <% end %>
+<% end %>
 

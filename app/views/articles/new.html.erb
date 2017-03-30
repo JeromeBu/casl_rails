@@ -7,8 +7,10 @@
 
         <div class="form-inputs">
           <%= f.input :title, label: "Titre de l'article" %>
-          <%= f.input :content, label: "Contenu" %>
-          <p>Id de l'activité<%= @activity.id %></p>
+
+
+          <%= f.input :content, as: :text, input_html: {class: "edit-froala"} %>
+
           <%= f.hidden_field :activity_id, value: @activity.id %>
         </div>
 

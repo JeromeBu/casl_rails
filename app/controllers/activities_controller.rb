@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_activity, only: [:edit, :update, :show]
+  before_action :set_activity, only: [:edit, :update, :show, :destroy]
 
   def index
     # @activities = Activity.all
@@ -43,6 +43,11 @@ class ActivitiesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @activity.destroy
+    redirect_to activities_path
   end
 
   private
