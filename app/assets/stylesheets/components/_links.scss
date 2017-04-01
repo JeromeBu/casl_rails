@@ -7,3 +7,7 @@ a:hover {
   text-decoration: none;
   color: $red;
 }
+
+a:focus {
+  color: $redish;
+}

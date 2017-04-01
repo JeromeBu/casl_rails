@@ -1,33 +1,25 @@
+<%= simple_form_for [@child] do |f| %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1>Ajout d'un enfant</h1>
-        <%= simple_form_for [@user, @child] do |f| %>
-
-        <div class="form-inputs">
-          <%= f.input :first_name, label: "Prénom" %>
-          <% @last_name = "" %>
-          <% if @child.last_name.blank? %>
-            <%= f.input :last_name, label: "Nom", input_html: { value: @user.last_name } %>
-          <% else %>
-            <%= f.input :last_name, label: "Nom" %>
-          <% end %>
-          <%= f.input :sex, label: "Sexe", :collection => [ "Garçon", "Fille"]%>
-          <%= f.input :birth_date,  label: "Date de naissance", placeholder: "jj/mm/aaaa", as: :string, input_html: {class: "datepicker" } %>
-          <%= f.input :school, label: "Ecole" %>
-          <%= f.input :classe, label: "Classe" %>
-          <%= f.input :extra_info, label: "Informations complémentaires ?" %>
-          <%= f.hidden_field :user_id, value: @user.id %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Valider", class: "btn btn-primary" %>
-        </div>
-        <div>
-          <%= link_to "Annuler", user_path(@user) %>
-        </div>
-      <% end %>
-    </div>
+  <div class="form-inputs">
+    <%= f.input :first_name, label: "Prénom" %>
+    <% @last_name = "" %>
+    <% if @child.last_name.blank? %>
+      <%= f.input :last_name, label: "Nom", input_html: { value: @user.last_name } %>
+    <% else %>
+      <%= f.input :last_name, label: "Nom" %>
+    <% end %>
+    <%= f.input :sex, label: "Sexe", :collection => [ "Garçon", "Fille"]%>
+    <%= f.input :birth_date,  label: "Date de naissance", placeholder: "jj/mm/aaaa", as: :string, input_html: {class: "datepicker" } %>
+    <%= f.input :school, label: "Ecole" %>
+    <%= f.input :classe, label: "Classe" %>
+    <%= f.input :extra_info, label: "Informations complémentaires ?" %>
+    <%= f.hidden_field :user_id, value: @user.id %>
   </div>
-</div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Valider", class: "btn btn-primary" %>
+  </div>
+  <div>
+    <%= link_to "Annuler", user_path(@user) %>
+  </div>
+<% end %>

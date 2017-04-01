@@ -1,3 +1,4 @@
+
 class ChildrenController < ApplicationController
 
   before_action :set_user, only: [:new, :edit, :index]
@@ -9,15 +10,14 @@ class ChildrenController < ApplicationController
     @children = policy_scope(Child).where(user: @user).order(birth_date: :desc)
   end
 
-  def new
-    @child = Child.new
-    authorize @child
-  end
-
   def create
     @child = Child.new(child_params)
     authorize @child
     @user = @child.user
+    puts "-----------------------------------------"
+    p params
+    p @inscription
+    p @activity
     if @child.save
       respond_to do |format|
         format.html { redirect_to session[:my_previous_url] || user_path(current_user) }
@@ -45,7 +45,10 @@ class ChildrenController < ApplicationController
 
   def destroy
     @child.destroy
-    redirect_to user_path(current_user)
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.js
+    end
   end
 
   private

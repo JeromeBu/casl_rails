@@ -60,10 +60,10 @@
 // Permet d'éviter le contour bleu apres un clic sur un trigger de modal
 
 .modal-open .modal,.btn:focus{
-    outline:none!important
+    outline:none!important;
 }
 
 
 .modal-open .modal, a:focus{
-    outline:none!important
+    outline:none!important;
 }

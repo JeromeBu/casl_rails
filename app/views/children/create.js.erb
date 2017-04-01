@@ -1,22 +1,42 @@
 // app/views/reviews/create.js.erb
 // Here you will write *javascript* that would be executed by the browser
-<% if @user.errors.any? %>
+<% if @child.errors.any? %>
   // // Render new review form with errors
   // $('#user-edit-modal').modal('show')
   $('.child-form-modal-body').html("<%= j render 'children/modal_form', user: @user, child: @child %>");
 
+  // reactivation bootstrap datepicker
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
+  });
+
+
 <% else %>
 
   // fermeture de la modal
-   $('#child-form-modal').modal('hide');
+  $('#child-form-modal').modal('hide');
+
+  // mise à jour de la liste deroulante de choix pour la page activité
+  console.log('testing activity')
+
+  var new_child_for_choices = $('<option value="<%= @child.first_name %>"><%= @child.first_name %></option>');
+  $('#child_first_name').append(new_child_for_choices);
+  new_child_for_choices.slideDown();
 
 
-  // mise à jour des données utilisateur
+
+  // mise à jour des données utilisateur pour la page user
   var new_child = $("<%= j render 'children/append_child', child: @child %>");
-  $('.children-table').append(new_child);
+  $('.children-tbody').append(new_child);
   new_child.slideDown();
 
+
+
   // refraichit le formulaire avec les nouvelles infos
-  $('.child-form-modal-body').html("<%= j render 'children/modal_form', user: @user, child: @child %>");
+  $('.child-form-modal-body').html("<%= j render 'children/modal_form', user: @user, child: Child.new %>");
 
 <% end %>
+

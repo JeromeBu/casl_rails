@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @child = Child.new
     @inscription = Inscription.new
     @article = Article.new(activity: @activity)
   end

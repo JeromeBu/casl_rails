@@ -1,5 +1,18 @@
-<tr>
+<tr id="enfant_<%= child.id %>">
   <td id="prenom_enfant_<%= child.id %>"><%= child.first_name %></td>
   <td id="nom_enfant_<%= child.id %>"><%= child.birth_date %></td>
   <td id="activ_enfant_<%= child.id %>"><%= child.activities.map{ |activity| activity.title + ", "}.join.chop.chop %></td>
+  <td id="actions_enfant_<%= child.id %>">
+    <%= link_to '#' do %>
+      <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to '#' do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <% end %>
+    &nbsp;
+    <%= link_to child_path(child), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cet enfant ? \n \n Cette action est irréversible."}, remote: true do %>
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    <% end %>
+  </td>
 </tr>

@@ -1,18 +1,13 @@
-<%= simple_form_for([activity, inscription], remote: true) do |f| %>
+<%= simple_form_for([activity, inscription], remote: true ) do |f| %>
 
-        <div class="form-inputs">
-          <%= f.hidden_field :activity_id, value: activity.id %>
-          <p>Activité : <%= activity.title %></p>
-          <%= f.input :child_id, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.first_name} %>
+  <div class="form-inputs">
+    <%= f.hidden_field :activity_id, value: activity.id %>
+    <p>Activité : <%= activity.title %></p>
+    <%= f.input :child_id, label: "Enfant", input_html: { id: "child_first_name"}, :collection => current_user.children.map { |child| child.first_name} %>
 
-        </div>
-        <p>Votre enfant n'apparait pas dans la liste ?</p>
-        <%= link_to "Ajouter un enfant", new_user_child_path(current_user) %>
-        <br>
-        <br>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Inscrire", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Inscrire", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
