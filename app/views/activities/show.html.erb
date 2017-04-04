@@ -73,18 +73,20 @@
   </div>
 </div>
 
-
+<% if user_signed_in? %>
 <!-- Modal add a child -->
-<div class="modal fade" id="child-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1 class="modal-title" id="myModalLabel">Modifier vos informations</h1>
-      </div>
-      <div class="child-form-modal-body">
-        <%= render 'children/modal_form', user: current_user, child: @child%>
+  <div class="modal fade" id="child-form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h1 class="modal-title" id="myModalLabel">Modifier vos informations</h1>
+        </div>
+        <div class="child-form-modal-body">
+          <%= render 'children/modal_form', user: current_user, child: @child%>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+<% end %>
