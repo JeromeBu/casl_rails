@@ -22,7 +22,7 @@
   // mise à jour de la liste deroulante de choix pour la page activité
   console.log('testing activity')
 
-  var new_child_for_choices = $('<option value="<%= @child.first_name %>"><%= @child.first_name %></option>');
+  var new_child_for_choices = $('<option selected="<%= @child.first_name %>"><%= @child.first_name %></option>');
   $('#child_first_name').append(new_child_for_choices);
   new_child_for_choices.slideDown();
 
