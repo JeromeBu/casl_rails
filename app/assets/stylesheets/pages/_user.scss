@@ -67,3 +67,9 @@
 .modal-open .modal, a:focus{
     outline:none!important;
 }
+
+// augmentation de la taille de la police des Flash alerte
+
+.alert {
+  font-size: 30px;
+}
