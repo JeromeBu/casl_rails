@@ -1,0 +1,2 @@
+class GrownActivitiesController < ApplicationController
+end

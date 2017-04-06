@@ -1,0 +1,2 @@
+class ChildActivity < ApplicationRecord
+end
