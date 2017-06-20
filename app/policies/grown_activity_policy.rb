@@ -1,19 +1,14 @@
-class ActivityPolicy < ApplicationPolicy
+class GrownActivityPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  # the following index? here is necessary to only give the inscription list to the authorize person
-  # check inscription_controller
   def index?
     is_user_activity_admin_or_admin?
   end
 
-  def get_xlsx?
-    is_user_activity_admin_or_admin?
-  end
 
   def create?
     admin?

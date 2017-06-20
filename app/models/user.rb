@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :children, dependent: :destroy
+  has_many :grown_inscriptions, dependent: :destroy
+  has_many :grown_activities, through: :grown_inscriptions
 
   validates :civility, presence: {:message => "Veuillez remplir ce champ"}
   validates :civility, inclusion: { in: ["M.", "Mme" , "Mlle"] }

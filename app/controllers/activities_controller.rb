@@ -6,6 +6,7 @@ class ActivitiesController < ApplicationController
     # @activities = Activity.all
     @activity = Activity.new
     @activities = policy_scope(Activity)
+    @grown_activities = policy_scope(GrownActivity)
   end
 
   def show

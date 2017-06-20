@@ -8,7 +8,7 @@ class CreateChildren < ActiveRecord::Migration[5.0]
       t.string :school
       t.string :class
       t.text :extra_info
-      t.references :user, foreign_key: true
+      t.references :user, foreign_key: true, index: true
 
       t.timestamps
     end

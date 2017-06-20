@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <!-- description de l'activité -->
+    <div class="col-xs-12 col-sm-9">
+      <div class="card-show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @grown_activity.photo.path %>');">
+          <div class="card-description">
+            <h2><%= @grown_activity.title %></h2>
+            <p><%= @grown_activity.subtitle %></p>
+          </div>
+      </div>
+
+      <% @grown_activity.grown_activity_articles.each do |grown_activity_article| %>
+        <div class="article">
+          <h4><%= grown_activity_article.title%></h4>
+          <%= simple_format(grown_activity_article.content)%>
+        </div>
+        <br>
+      <% end %>
+    </div>
+
+    <!-- Lien pour inscritption -->
+    <div class="col-xs-12 col-sm-3" id="child-inscription">
+      <br>
+      <% if user_signed_in? %>
+        <% if current_user.grown_activities.include?(@grown_activity)%>
+          <p id="no-child">Vous êtes déjà inscrit !</p>
+        <% else %>
+          <p>Vous n'êtes pas encore inscrit à cette activité.</p>
+        <% end %>
+        <h3> S'inscrire </h3>
+        <div id="inscription-form-div">
+          <%= render 'grown_inscriptions/form', grown_activity: @grown_activity, grown_inscription: @grown_inscription %>
+        </div>
+        <br>
+
+
+
+      <% else %>
+        <h4> Vous souhaitez inscrire votre enfant ?</h4>
+        <p>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary" %>
+        </p>
+        <p>
+          <%= link_to "Créer un compte", new_user_registration_path, class: "btn btn-primary" %>
+        </p>
+      <% end %>
+
+      <hr>
+
+      <% if policy(@grown_activity).update? %>
+        <%= link_to "Modifier l'activité", edit_grown_activity_path(@grown_activity) %>
+      <% end %>
+
+      <br>
+
+      <% if policy(@grown_activity_article).create? %>
+        <%= link_to "Ajouter un article", new_grown_activity_grown_activity_article_path(@grown_activity) %>
+      <% end %>
+
+      <br>
+
+      <% if policy(@grown_activity).index? %>
+        <%= link_to "Liste des inscrits", grown_activity_grown_inscriptions_path(@grown_activity) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

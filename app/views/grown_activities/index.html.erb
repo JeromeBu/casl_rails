@@ -1,0 +1,28 @@
+<h1>Activités pour les adultes</h1>
+
+<div class="container">
+  <div class="row">
+    <% if policy(@grown_activity).create? %>
+        <p><%= link_to "Ajouter une activité", new_grown_activity_path %></p>
+    <% end %>
+    <% @grown_activities.each do |grown_activity| %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="index-card">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path grown_activity.photo.path, height: 300, width: 400, crop: :fill %>');">
+            <div class="card-description">
+              <h2><%= grown_activity.title %></h2>
+              <p><%= grown_activity.subtitle %></p>
+            </div>
+            <%= link_to grown_activity.title, grown_activity_path(grown_activity), class: "card-link"%>
+          </div>
+          <% if policy(grown_activity).destroy? %>
+            <%= link_to "Supprimer l'activité", grown_activity_path(grown_activity), method: :delete, data: {confirm: "Etes vous sûr de vouloir supprimer cette activité ? \n \n Cette action est iréversible et entraine la supression de la liste des inscrits."} %>
+          <% end %>
+          <% if policy(grown_activity).update? %>
+            <%= link_to "Modifier", edit_grown_activity_path(grown_activity) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

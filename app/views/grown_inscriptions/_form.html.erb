@@ -1,0 +1,11 @@
+<%= simple_form_for([grown_activity, grown_inscription]) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :grown_activity_id, value: grown_activity.id %>
+    <p>Activité : <%= grown_activity.title %></p>
+
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "S'inscrire", class: "btn btn-primary" %>
+  </div>
+<% end %>
